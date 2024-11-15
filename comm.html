@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Student Q&A</title>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap');
+
+    body {
+      font-family: 'Poppins', sans-serif;
+      background-color: #f5f5f5;
+      color: #333;
+      margin: 0;
+      padding: 0;
+    }
+
+    .container {
+      max-width: 800px;
+      margin: 0 auto;
+      padding: 40px 20px;
+    }
+
+    .question, .answer {
+      background-color: white;
+      border-radius: 8px;
+      box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+      padding: 20px;
+      margin-bottom: 20px;
+    }
+
+    .question h3, .answer h3 {
+      color: #1565C0;
+      margin-top: 0;
+    }
+
+    .answer {
+      margin-left: 40px;
+    }
+
+    input, textarea {
+      font-family: 'Poppins', sans-serif;
+      width: 100%;
+      padding: 12px 16px;
+      border: 1px solid #ddd;
+      border-radius: 4px;
+      box-sizing: border-box;
+      font-size: 16px;
+      margin-bottom: 16px;
+    }
+
+    button {
+      font-family: 'Poppins', sans-serif;
+      background-color: #1565C0;
+      color: white;
+      padding: 12px 24px;
+      border: none;
+      border-radius: 4px;
+      cursor: pointer;
+      font-size: 16px;
+    }
+
+    button:hover {
+      background-color: #0D47A1;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>Community Q&A</h1>
+    <div class="question-form">
+      <h2>Ask a Question</h2>
+      <input type="text" id="question-title" placeholder="Question Title">
+      <textarea id="question-content" rows="3" placeholder="Question Content"></textarea>
+      <button onclick="postQuestion()">Submit</button>
+    </div>
+    <div id="question-container">
+      <!-- Questions and answers will be dynamically added here -->
+    </div>
+  </div>
+
+  <script>
+    const questions = [];
+
+    function postQuestion() {
+      const title = document.getElementById('question-title').value;
+      const content = document.getElementById('question-content').value;
+      if (title && content) {
+        const question = { title, content, answers: [] };
+        questions.push(question);
+        displayQuestions();
+        document.getElementById('question-title').value = '';
+        document.getElementById('question-content').value = '';
+      }
+    }
+
+    function postAnswer(questionIndex) {
+      const answerContent = prompt('Enter your answer:');
+      if (answerContent) {
+        questions[questionIndex].answers.push(answerContent);
+        displayQuestions();
+      }
+    }
+
+    function displayQuestions() {
+      const container = document.getElementById('question-container');
+      container.innerHTML = '';
+      for (let i = 0; i < questions.length; i++) {
+        const question = questions[i];
+        const questionElement = document.createElement('div');
+        questionElement.classList.add('question');
+        questionElement.innerHTML = `
+          <h3>${question.title}</h3>
+          <p>${question.content}</p>
+          <button onclick="postAnswer(${i})">Answer</button>
+        `;
+        container.appendChild(questionElement);
+        for (let j = 0; j < question.answers.length; j++) {
+          const answer = question.answers[j];
+          const answerElement = document.createElement('div');
+          answerElement.classList.add('answer');
+          answerElement.innerHTML = `
+            <h3>Answer</h3>
+            <p>${answer}</p>
+          `;
+          container.appendChild(answerElement);
+        }
+      }
+    }
+  </script>
+</body>
+</html>

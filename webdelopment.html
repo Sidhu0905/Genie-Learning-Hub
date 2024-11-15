@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Web Development Learning Hub</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Poppins', sans-serif;
+            margin: 0;
+            padding: 0;
+            color: #333;
+        }
+
+        header {
+            background: linear-gradient(to right, #6366f1, #4f46e5);
+            color: white;
+            padding: 2rem;
+        }
+
+        header h1 {
+            font-size: 2.5rem;
+            font-weight: 700;
+            margin-bottom: 1rem;
+        }
+
+        nav ul {
+            list-style-type: none;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+        }
+
+        nav a {
+            color: white;
+            text-decoration: none;
+            font-weight: 600;
+            transition: color 0.3s;
+        }
+
+        nav a:hover {
+            color: #e0e7ff;
+        }
+
+        main {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 2rem;
+        }
+
+        section {
+            margin-bottom: 3rem;
+        }
+
+        section h2 {
+            color: #6366f1;
+            font-size: 2rem;
+            font-weight: 700;
+            margin-bottom: 1rem;
+        }
+
+        section p {
+            line-height: 1.6;
+            margin-bottom: 1rem;
+        }
+
+        footer {
+            background: linear-gradient(to right, #6366f1, #4f46e5);
+            color: white;
+            padding: 1rem;
+            text-align: center;
+            font-size: 0.875rem;
+        }
+        .thumbnail {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+            transition: transform 0.5s ease;
+        }
+        .video-title {
+            font-size: 1.25rem;
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+            color: var(--text-color);
+            line-height: 1.4;
+        }
+
+        .video-description {
+            color: var(--text-light);
+            font-size: 0.95rem;
+            line-height: 1.6;
+            margin-bottom: 1rem;
+        }
+        .badge-new {
+            background: var(--success-color);
+            color: white;
+            padding: 2px 8px;
+            border-radius: 12px;
+            font-size: 0.75rem;
+            margin-left: 8px;
+            text-transform: uppercase;
+            font-weight: 600;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="container">
+            <h1>Web Development </h1>
+        </div>
+    </header>
+
+    <main>
+        <section id="introduction">
+            <h2>Introduction to Web Development</h2>
+            <p>Web development is the process of creating websites and web applications. It involves a range of technologies and skills, including HTML, CSS, JavaScript, and various frameworks and libraries.</p>
+            <p>In this section, you'll learn the basics of web development, including the different roles and specializations within the field, the history and evolution of the web, and the fundamental concepts and technologies that underpin modern web development.</p>
+        </section>
+
+        <section id="html-css">
+            <h2>HTML & CSS</h2>
+            <p>HTML (Hypertext Markup Language) and CSS (Cascading Style Sheets) are the building blocks of web development. HTML provides the structure and content of a web page, while CSS is used to control the presentation and styling of that content.</p>
+            <p>In this section, you'll learn how to write clean, semantic HTML, how to use CSS to create visually appealing and responsive designs, and how to combine HTML and CSS to build modern, accessible websites.</p>
+        </section>
+
+        <section id="javascript">
+            <h2>JavaScript</h2>
+            <p>JavaScript is a powerful programming language that adds interactivity and dynamic behavior to web pages. It is essential for creating modern, feature-rich web applications.</p>
+            <p>In this section, you'll learn the fundamentals of JavaScript, including variables, data types, functions, control flow, and object-oriented programming. You'll also explore advanced topics like asynchronous programming, ES6 features, and various JavaScript libraries and frameworks.</p>
+        </section>
+
+        <section id="frameworks">
+            <h2>Web Development Frameworks</h2>
+            <p>Web development frameworks are pre-built libraries and tools that provide a structured and efficient way to build web applications. Popular frameworks include React, Angular, Vue.js, and Express.js (for Node.js).</p>
+            <p>In this section, you'll learn how to use these frameworks to build scalable, maintainable, and performant web applications. You'll also explore the benefits and trade-offs of using different frameworks, and how to choose the right one for your project.</p>
+        </section>
+
+        <section id="projects">
+            <h2>Web Development Projects</h2>
+            <p>Building real-world projects is the best way to apply and reinforce the skills you've learned. In this section, you'll find a variety of web development project ideas, from simple static websites to complex web applications.</p>
+            <p>Each project includes a detailed description, step-by-step instructions, and resources to help you get started. As you work through these projects, you'll gain hands-on experience and build a portfolio of work to showcase your web development abilities.</p>
+        </section>
+        <div>
+            <h2> Web Development</h2>
+            <div>
+                <div>
+                    <a href="https://youtube.com/playlist?list=PLoYCgNOIyGAB_8_iq1cL8MVeun7cB6eNc&si=2t6U9vwmP-BYstlr" target="_blank">
+                        <div class="thumbnail-container">
+                            <img src="best-web-development-languages.webp" alt="BASIC WEB DEVELOPMENT" class="thumbnail">
+                            <div class="play-button">
+                                <i class="fas fa-play"></i>
+                            </div>
+                        </div>
+                        <div class="video-title">Beginner basics for HTML CSS <span class="badge-new">New</span></div>
+                        <div class="video-description">Learn the fundamentals of HTML, CSS, and JavaScript through hands-on projects and interactive exercises.</div>
+                    
+                    </a>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <footer>
+        <p>&copy; 2023 Web Development Learning Hub. All rights reserved.</p>
+    </footer>
+</body>
+</html>

@@ -1,0 +1,350 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Python Learning Hub</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.24.1/themes/prism-tomorrow.min.css">
+    <style>
+        :root {
+            --primary-color: #306998;
+            --secondary-color: #FFD43B;
+            --text-color: #333;
+            --code-bg: #282c34;
+        }
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            margin: 0;
+            padding: 0;
+            color: var(--text-color);
+            line-height: 1.6;
+        }
+
+        header {
+            background: var(--primary-color);
+            color: white;
+            padding: 2rem;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
+
+        header h1 {
+            font-size: 2.5rem;
+            font-weight: 700;
+            margin-bottom: 1rem;
+            text-align: center;
+        }
+
+        nav ul {
+            list-style-type: none;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+            flex-wrap: wrap;
+        }
+
+        nav a {
+            color: var(--secondary-color);
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.3s;
+            padding: 0.5rem 1rem;
+            border-radius: 4px;
+        }
+
+        nav a:hover {
+            background: rgba(255, 212, 59, 0.1);
+            transform: translateY(-2px);
+        }
+
+        main {
+            max-width: 1000px;
+            margin: 2rem auto;
+            padding: 0 2rem;
+        }
+
+        section {
+            margin-bottom: 4rem;
+            padding: 2rem;
+            background: white;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+
+        section h2 {
+            color: var(--primary-color);
+            font-size: 2rem;
+            font-weight: 700;
+            margin-bottom: 1.5rem;
+            border-bottom: 3px solid var(--secondary-color);
+            padding-bottom: 0.5rem;
+            display: inline-block;
+        }
+
+        section h3 {
+            color: var(--primary-color);
+            font-size: 1.5rem;
+            margin: 1.5rem 0 1rem;
+        }
+
+        .code-example {
+            background: var(--code-bg);
+            padding: 1.5rem;
+            border-radius: 8px;
+            margin: 1rem 0;
+            overflow-x: auto;
+        }
+
+        .code-example code {
+            font-family: 'Fira Code', monospace;
+            font-size: 0.9rem;
+            line-height: 1.5;
+            color: #fff;
+        }
+
+        .example-output {
+            background: #f5f5f5;
+            padding: 1rem;
+            border-radius: 4px;
+            margin-top: 1rem;
+            border-left: 4px solid var(--primary-color);
+        }
+
+        .concept-card {
+            background: #fff;
+            padding: 1.5rem;
+            border-radius: 8px;
+            margin: 1rem 0;
+            border: 1px solid #eee;
+            transition: transform 0.3s;
+        }
+
+        .concept-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        footer {
+            background: var(--primary-color);
+            color: white;
+            padding: 2rem;
+            text-align: center;
+            margin-top: 4rem;
+        }
+
+        .important-note {
+            background: rgba(48, 105, 152, 0.1);
+            padding: 1rem;
+            border-left: 4px solid var(--primary-color);
+            margin: 1rem 0;
+        }
+        .video-title {
+            font-size: 1.25rem;
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+            color: var(--text-color);
+            line-height: 1.4;
+        }
+
+        .video-description {
+            color: var(--text-light);
+            font-size: 0.95rem;
+            line-height: 1.6;
+            margin-bottom: 1rem;
+        }
+        .badge-new {
+            background: var(--success-color);
+            color: white;
+            padding: 2px 8px;
+            border-radius: 12px;
+            font-size: 0.75rem;
+            margin-left: 8px;
+            text-transform: uppercase;
+            font-weight: 600;
+        }
+
+        @media (max-width: 768px) {
+            nav ul {
+                flex-direction: column;
+                align-items: center;
+            }
+
+            section {
+                padding: 1rem;
+            }
+
+            .code-example {
+                padding: 1rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="container">
+            <h1>Genie Learning Hub</h1>
+            
+        </div>
+    </header>
+
+    <main>
+        <section id="fundamentals">
+            <h2>Python Fundamentals</h2>
+            <div class="concept-card">
+                <h3>Variables and Data Types</h3>
+                <p>Python is dynamically typed and supports various basic data types.</p>
+                <div class="code-example">
+                    <code>
+                        # Basic data types<br>
+                        name = "Alice"        # str<br>
+                        age = 25             # int<br>
+                        height = 1.75        # float<br>
+                        is_student = True    # bool<br>
+                        has_pet = None       # NoneType<br><br>
+                        # Type checking<br>
+                        print(type(name))    # <class 'str'><br>
+                        print(type(age))     # <class 'int'>
+                    </code>
+                </div>
+            </div>
+
+            <div class="concept-card">
+                <h3>Control Flow</h3>
+                <p>Python uses indentation to define code blocks in control structures.</p>
+                <div class="code-example">
+                    <code>
+                        # If statement<br>
+                        if age >= 18:<br>
+                        &nbsp;&nbsp;&nbsp;&nbsp;print("Adult")<br>
+                        elif age >= 13:<br>
+                        &nbsp;&nbsp;&nbsp;&nbsp;print("Teenager")<br>
+                        else:<br>
+                        &nbsp;&nbsp;&nbsp;&nbsp;print("Child")<br><br>
+                        # For loop<br>
+                        for i in range(5):<br>
+                        &nbsp;&nbsp;&nbsp;&nbsp;print(i)
+                    </code>
+                </div>
+            </div>
+        </section>
+
+        <section id="data-structures">
+            <h2>Data Structures</h2>
+            <div class="concept-card">
+                <h3>Lists and Tuples</h3>
+                <p>Python provides several built-in data structures for storing collections.</p>
+                <div class="code-example">
+                    <code>
+                        # Lists (mutable)<br>
+                        fruits = ['apple', 'banana', 'orange']<br>
+                        fruits.append('grape')<br>
+                        fruits[0] = 'pear'<br><br>
+                        # Tuples (immutable)<br>
+                        coordinates = (10, 20)<br>
+                        # coordinates[0] = 30  # This would raise an error
+                    </code>
+                </div>
+            </div>
+
+            <div class="concept-card">
+                <h3>Dictionaries and Sets</h3>
+                <p>Key-value pairs and unique collections in Python.</p>
+                <div class="code-example">
+                    <code>
+                        # Dictionary<br>
+                        person = {<br>
+                        &nbsp;&nbsp;&nbsp;&nbsp;'name': 'Bob',<br>
+                        &nbsp;&nbsp;&nbsp;&nbsp;'age': 30,<br>
+                        &nbsp;&nbsp;&nbsp;&nbsp;'city': 'New York'<br>
+                        }<br><br>
+                        # Set<br>
+                        unique_numbers = {1, 2, 3, 3, 4}  # {1, 2, 3, 4}
+                    </code>
+                </div>
+            </div>
+        </section>
+
+        <section id="functions">
+            <h2>Functions</h2>
+            <div class="concept-card">
+                <h3>Function Definitions</h3>
+                <p>Functions in Python are defined using the def keyword.</p>
+                <div class="code-example">
+                    <code>
+                        # Basic function<br>
+                        def greet(name):<br>
+                        &nbsp;&nbsp;&nbsp;&nbsp;return f"Hello, {name}!"<br><br>
+                        # Function with default parameter<br>
+                        def power(base, exponent=2):<br>
+                        &nbsp;&nbsp;&nbsp;&nbsp;return base ** exponent<br><br>
+                        # Lambda function<br>
+                        square = lambda x: x ** 2
+                    </code>
+                </div>
+            </div>
+        </section>
+
+        <section id="oop">
+            <h2>Object-Oriented Programming</h2>
+            <div class="concept-card">
+                <h3>Classes and Objects</h3>
+                <p>Python supports class-based object-oriented programming.</p>
+                <div class="code-example">
+                    <code>
+                        class Dog:<br>
+                        &nbsp;&nbsp;&nbsp;&nbsp;def __init__(self, name):<br>
+                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;self.name = name<br><br>
+                        &nbsp;&nbsp;&nbsp;&nbsp;def bark(self):<br>
+                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;return f"{self.name} says Woof!"<br><br>
+                        # Creating an object<br>
+                        my_dog = Dog("Rex")<br>
+                        print(my_dog.bark())  # Rex says Woof!
+                    </code>
+                </div>
+            </div>
+        </section>
+
+        <section id="modules">
+            <h2>Modules and Packages</h2>
+            <div class="concept-card">
+                <h3>Working with Modules</h3>
+                <p>Python's module system helps organize and reuse code.</p>
+                <div class="code-example">
+                    <code>
+                        # Importing modules<br>
+                        import math<br>
+                        from datetime import datetime<br><br>
+                        # Using module functions<br>
+                        print(math.pi)          # 3.141592653589793<br>
+                        print(datetime.now())   # Current date and time
+                    </code>
+                </div>
+            </div>
+        </section>
+        <div>
+            <h2>Python</h2>
+                    <a href="https://youtu.be/kqtD5dpn9C8?si=4y_PNI54GHyCGwTh" target="_blank">
+                        <div class="thumbnail-container">
+                            <img src="pythonfeature.png" alt="Python Programming" class="thumbnail">
+                        </div>
+                        <div class="video-title">Python Programming: Zero to Hero</div>
+                        <div class="video-description">Begin your programming journey with this comprehensive Python tutorial for beginners.</div>
+    </main>
+
+    <footer>
+        <div class="container">
+            <p>&copy; 2024 Python Learning Hub. All rights reserved.</p>
+        </div>
+    </footer>
+</body>
+</html>

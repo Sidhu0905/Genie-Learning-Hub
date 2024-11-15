@@ -1,0 +1,348 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>StudyHub - Interactive Learning Platform</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+        }
+
+        :root {
+            --primary-color: #4f46e5;
+            --primary-light: #818cf8;
+            --secondary-color: #3b82f6;
+            --accent-color: #f59e0b;
+            --text-color: #f3f4f6;
+            --text-light: #d1d5db;
+            --background-color: #6b21a8;
+            --card-background: #5b21b6;
+            --focus-outline: 3px solid #a78bfa;
+            --success-color: #10b981;
+            --gradient-start: #4f46e5;
+            --gradient-end: #3b82f6;
+        }
+
+        body {
+            background-color: var(--background-color);
+            color: var(--text-color);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        header {
+            background: linear-gradient(135deg, var(--gradient-start), var(--gradient-end));
+            color: white;
+            text-align: center;
+            padding: 4rem 1rem;
+            margin-bottom: 3rem;
+            position: relative;
+            overflow: hidden;
+        }
+
+        header::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: radial-gradient(circle at 50% 50%, rgba(255,255,255,0.1) 0%, transparent 60%);
+            opacity: 0.6;
+        }
+
+        header h1 {
+            font-size: 3rem;
+            font-weight: 800;
+            margin-bottom: 1rem;
+            text-shadow: 0 2px 4px rgba(0,0,0,0.1);
+            letter-spacing: -0.025em;
+        }
+
+        header p {
+            font-size: 1.25rem;
+            opacity: 0.9;
+            max-width: 600px;
+            margin: 0 auto;
+            font-weight: 500;
+        }
+
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 0 24px;
+        }
+
+        .subjects {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 2.5rem;
+            margin-bottom: 3rem;
+        }
+
+        .subject {
+            background: var(--card-background);
+            border-radius: 16px;
+            overflow: hidden;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1),
+                        0 2px 4px -1px rgba(0, 0, 0, 0.06);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            border: 1px solid rgba(0,0,0,0.05);
+        }
+
+        .subject:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1),
+                        0 10px 10px -5px rgba(0, 0, 0, 0.04);
+        }
+
+        .subject h2 {
+            background: var(--primary-color);
+            color: white;
+            padding: 1.5rem;
+            font-size: 1.5rem;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            font-weight: 600;
+        }
+
+        .video-list {
+            padding: 1.5rem;
+        }
+
+        .video-item {
+            margin-bottom: 2rem;
+            transition: all 0.3s ease;
+        }
+
+        .video-item:last-child {
+            margin-bottom: 0;
+        }
+
+        .video-item a {
+            text-decoration: none;
+            color: var(--text-color);
+            display: block;
+        }
+
+        .thumbnail-container {
+            position: relative;
+            overflow: hidden;
+            border-radius: 12px;
+            margin-bottom: 1rem;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+        }
+
+        .thumbnail {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+            transition: transform 0.5s ease;
+        }
+
+        .play-button {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%) scale(0.9);
+            background: var(--primary-color);
+            width: 64px;
+            height: 64px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            opacity: 0;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+
+        .play-button i {
+            color: white;
+            font-size: 1.5rem;
+            margin-left: 4px;
+        }
+
+        .video-item:hover .thumbnail {
+            transform: scale(1.05);
+        }
+
+        .video-item:hover .play-button {
+            opacity: 1;
+            transform: translate(-50%, -50%) scale(1);
+        }
+
+        .video-title {
+            font-size: 1.25rem;
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+            color: var(--text-color);
+            line-height: 1.4;
+        }
+
+        .video-description {
+            color: var(--text-light);
+            font-size: 0.95rem;
+            line-height: 1.6;
+            margin-bottom: 1rem;
+        }
+
+        .video-meta {
+            display: flex;
+            align-items: center;
+            gap: 16px;
+            font-size: 0.875rem;
+            color: var(--text-light);
+        }
+
+        .video-meta span {
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            background: rgba(255,255,255,0.1);
+            padding: 4px 12px;
+            border-radius: 20px;
+            font-weight: 500;
+        }
+
+        .difficulty-beginner { color: var(--success-color); }
+        .difficulty-intermediate { color: var(--accent-color); }
+        .difficulty-advanced { color: var(--primary-light); }
+
+        .subject-icon {
+            font-size: 1.25rem;
+        }
+
+        /* Badge styles */
+        .badge-new {
+            background: var(--success-color);
+            color: white;
+            padding: 2px 8px;
+            border-radius: 12px;
+            font-size: 0.75rem;
+            margin-left: 8px;
+            text-transform: uppercase;
+            font-weight: 600;
+        }
+
+        @media (max-width: 768px) {
+            header {
+                padding: 3rem 1rem;
+            }
+
+            header h1 {
+                font-size: 2.5rem;
+            }
+
+            .subjects {
+                grid-template-columns: 1fr;
+                gap: 2rem;
+            }
+
+            .video-item {
+                margin-bottom: 1.5rem;
+            }
+        }
+
+        /* Custom scrollbar */
+        ::-webkit-scrollbar {
+            width: 12px;
+        }
+
+        ::-webkit-scrollbar-track {
+            background: var(--background-color);
+        }
+
+        ::-webkit-scrollbar-thumb {
+            background: var(--primary-light);
+            border-radius: 6px;
+            border: 3px solid var(--background-color);
+        }
+
+        ::-webkit-scrollbar-thumb:hover {
+            background: var(--primary-color);
+        }
+
+        /* Focus styles */
+        a:focus {
+            outline: var(--focus-outline);
+            outline-offset: 2px;
+        }
+
+        /* Loading animation */
+        .thumbnail-loading {
+            background: linear-gradient(90deg, rgba(255,255,255,0.1) 25%, rgba(255,255,255,0.2) 50%, rgba(255,255,255,0.1) 75%);
+            background-size: 200% 100%;
+            animation: loading 1.5s infinite;
+        }
+
+        @keyframes loading {
+            0% { background-position: 200% 0; }
+            100% { background-position: -200% 0; }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Genie Learning Hub</h1>
+        <p>Articles</p>
+    </header>
+
+    <div class="container">
+        <div class="subjects">
+        
+            <div class="subject">
+                <h2> Web Development</h2>
+                        <a href="https://careerfoundry.com/en/blog/web-development/what-is-web-development/" target="_blank">
+                            <div class="thumbnail-container">
+                                <img src="best-web-development-languages.webp" alt="BASIC WEB DEVELOPMENT" class="thumbnail">
+                                <div class="play-button">
+                                    <i class="fas fa-play"></i>
+                                </div>
+                            </div>
+                            <div class="video-title">Beginner basics for HTML CSS </div>
+                            <div class="video-description">Learn the fundamentals of HTML, CSS, and JavaScript through hands-on projects and interactive exercises.</div>
+                        
+                        </a>
+            </div>
+            <div class="subject">
+                <h2>JavaScript</h2>
+                        <a href="https://careerfoundry.com/en/blog/web-development/what-is-web-development/" target="_blank">
+                            <div class="thumbnail-container">
+                                <img src="java.avif" alt="Mechanics" class="thumbnail">
+                                <div class="play-button">
+                                    <i class="fas fa-play"></i>
+                                </div>
+                            </div>
+                            <div class="video-title">JavaScript For beginners</div>
+                            <div class="video-description">Deep dive into advanced JavaScript programming concepts, including closures, promises, and async/await.</div>
+    
+                        </a>
+                    </div>
+                </div>
+            </div>
+
+    
+            <div class="subject">
+                <h2>Python</h2>
+                        <a href="https://careerfoundry.com/en/blog/web-development/what-is-web-development/" target="_blank">
+                            <div class="thumbnail-container">
+                                <img src="pythonfeature.png" alt="Python Programming" class="thumbnail">
+                                <div class="play-button">
+                                    <i class="fas fa-play"></i>
+                                </div>
+                            </div>
+                            <div class="video-title">Python Programming: Zero to Hero</div>
+                            <div class="video-description">Begin your programming journey with this comprehensive Python tutorial for beginners.</div>
+                        </a>
+                    </div>
+                </div>
+            </div>
+</body>
+            
